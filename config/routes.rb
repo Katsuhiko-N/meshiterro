@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
+  get 'post_images/new'
+  get 'post_images/index'
+  get 'post_images/show'
   devise_for :users
   root to: "homes#top"
   get 'users/sign_up' => 'devise/sessions#new'
   get 'homes/about' => 'homes#about', as: "about"
+  resources :post_images, only: [:new, :index, :show]
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
@@ -23,3 +27,6 @@ end
 #                           PUT    /users(.:format)      devise/registrations#update
 #                           DELETE /users(.:format)    devise/registrations#destroy
 #                           POST   /users(.:format)   devise/registrations#create
+# post_images_new GET    /post_images/new(.:format)       post_images#new
+# post_images_index GET    /post_images/index(.:format)    post_images#index
+#   post_images_show GET    /post_images/show(.:format)       post_images#show
