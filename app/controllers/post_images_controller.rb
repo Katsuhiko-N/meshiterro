@@ -1,12 +1,32 @@
 class PostImagesController < ApplicationController
+  # 投稿ページの表示
   def new
-    @post_image = Post_Image.new
+    @post_image = PostImage.new
   end
-
+  
+  # 投稿機能
+  def create
+    # モデルの枠に入力データ(ストロングパラメータ)が入っている
+    @post_image = PostImage.new(post_image_params)
+    # サインインしているユーザID＝投稿者Id
+    @post_image.user_id = current_user.id
+    @post_image.save
+    redirect_to post_images_path
+  end
+  
   def index
   end
 
   def show
   end
+  
+  
+  private
+  
+  def post_image_params
+    params.require(:post_image).permit(:shop_name, :image, :caption)
+  end
+  
+  
   
 end

@@ -3,9 +3,9 @@
     <h4>画像</h4>
     <%= f.file_field :image, accept: "image/*" %>
     <h4>ショップ名</h4>
-    <%= f.file_field :shop_name %>
+    <%= f.text_field :shop_name %>
     <h4>説明</h4>
-    <%= f.file_field :caption %>
-    <% f.submit '投稿' %>
+    <%= f.text_area :caption %>
+    <%= f.submit '投稿' %>
 <% end %>
     
