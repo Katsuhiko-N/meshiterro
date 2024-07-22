@@ -1,8 +1,13 @@
 class PostImage < ApplicationRecord
     
     has_one_attached :image
-    belongs_to :user
     
+    # 各モデルとの関連付け
+    belongs_to :user
+    has_many :post_comments, dependent: :destroy
+    
+    
+    # プロフィール画像表示メソッド定義
     def get_image
         unless image.attached?
             file_path = Rails.root.join('app/assets/images/no_image.jpg')
