@@ -11,6 +11,8 @@
         <p>説明：<%= post_image.caption %></p>
         <!--アソシエーションを用いUserモデルのnameカラムから参照-->
         <p>ユーザネーム：<%= post_image.user.name %></p>
+        <!--コメント件数-->
+        <p><%= link_to "#{post_image.post_comments.count} コメント", post_image_path(post_image.id) %></p>
     </div>
 <% end %>
     
