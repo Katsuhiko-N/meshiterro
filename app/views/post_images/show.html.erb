@@ -19,6 +19,7 @@
   <!--コメント一件づつ取り出して表示-->
   <!--PostImageモデルに結び付いたPostCommentモデルから取る-->
   <% @post_image.post_comments.each do |post_comment| %>
+    <p><%= image_tag post_comment.user.get_profile_image(100,100) %></p>
     <p><%= post_comment.user.name %></p>
     <%= post_comment.created_at.strftime('%Y/%m/%d') %>
     <%= post_comment.comment %>
@@ -27,9 +28,8 @@
 
 <!--コメント投稿機能-->
 <div>
-  <%= fom_with model: [@post_image,@post_comment] do |f| %>
+  <%= form_with model: [@post_image, @post_comment] do |f| %>
     <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
     <%= f.submit "送信する" %>
   <% end %>
-  
 </div>
