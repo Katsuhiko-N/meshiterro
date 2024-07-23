@@ -7,6 +7,13 @@ class PostImage < ApplicationRecord
     has_many :post_comments, dependent: :destroy
     has_many :favorites, dependent: :destroy
     
+    # バリデーション
+    # shop_nameが存在しているか
+    validates :shop_name, presence: true
+    #imageが存在しているか 
+    validates :image, presence: true
+    
+    
     
     # プロフィール画像表示メソッド定義
     def get_image

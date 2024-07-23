@@ -10,8 +10,14 @@ class PostImagesController < ApplicationController
     @post_image = PostImage.new(post_image_params)
     # サインインしているユーザID＝投稿者Id
     @post_image.user_id = current_user.id
-    @post_image.save
-    redirect_to post_images_path
+    
+    # バリデーションチェック
+    # 保存できなかったらnewを再表示
+    if @post_image.save
+      redirect_to post_images_path
+    else
+      render :new
+    end
   end
   
   def index
